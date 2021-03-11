@@ -1,26 +1,25 @@
-import os
 import sys
 import time
 import threading
+import psutil
 from http.server import HTTPServer, CGIHTTPRequestHandler
 
 def create_server():
     server_address = ("", 8000)
     httpd = HTTPServer(server_address, CGIHTTPRequestHandler)
     httpd.serve_forever()
-threading.Thread(target=create_server).start() #создаю поток для веб-сервера, чтобы после запуска сервера код продолжил выполняться
-starttime=time.time()
+threading.Thread(target=create_server).start()
+
+def get_disk_info():
+    disk_info = []
+    for part in psutil.disk_partitions(all=False):
+        usage = psutil.disk_usage(part.mountpoint)
+        print('size_disk_info{device_name="'+part.device+'",mount_point="'+part.mountpoint+'"} '+ str(usage.total))
+        print('used_disk_info{device_name="'+part.device+'",mount_point="'+part.mountpoint+'"} '+ str(usage.used))
+    return 0
 
 while True:
-    listofdisks_temp=os.popen("ls /dev/vd*").readlines()+os.popen("ls /dev/sd*").readlines()+os.popen("ls /dev/hd*").readlines()   #получаю список устройств
-    listofdisks=[]
     sys.stdout=open("metrics","w")
-    for i in range(len(listofdisks_temp)):
-        listofdisks.append(listofdisks_temp[i][0: -1]) #привожу список устройств к виду /dev/vda
-        df_command = ("df -B1 " + listofdisks[i])
-        disk_info_temp = os.popen(df_command).readlines()  #получаю инфу о размере, занятом месте и точке монтирования
-        disk_info=disk_info_temp[1].split()
-        print('size_disk_info{device_name="'+listofdisks[i][5:]+'",Mount_point="'+disk_info[5]+'"} '+ disk_info[1]) #записываю понятные для prometheus метрики
-        print('used_disk_info{device_name="'+listofdisks[i][5:]+'",Mount_point="'+disk_info[5]+'"} '+ disk_info[2])
+    get_disk_info()    
     sys.stdout.close()
-    time.sleep(60.0 - ((time.time() - starttime) % 60.0)) #пишу метрики каждую минуту
+    time.sleep(1)
