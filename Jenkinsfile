@@ -5,7 +5,7 @@ pipeline {
       steps {
                     withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'pip3 install psutil'
-                    sh 'python diskinfo.py'
+                    sh 'setsid python diskinfo.py'
                 }      
                 
       }
