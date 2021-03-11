@@ -1,9 +1,9 @@
 pipeline {
-  agent { docker { image 'python:latest' } }
+  agent { docker { image 'python:3.7' } }
   stages {
     stage('build') {
       steps {
-        sh 'python3 -m pip install --user -r pip-requirements.txt'
+        sh 'pip install psutil'
       }
     }
     stage('test') {
