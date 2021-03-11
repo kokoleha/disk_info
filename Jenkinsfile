@@ -4,7 +4,7 @@ pipeline {
     stage('build') {
       steps {
                     withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'pip install psutil'
+                    sh 'pip3 install psutil'
                 }      
                 sh 'python diskinfo.py'
       }
