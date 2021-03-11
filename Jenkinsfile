@@ -5,7 +5,7 @@ pipeline {
       steps {
                     withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'pip3 install psutil'
-                    sh 'nohup python diskinfo.py'
+                    sh 'python diskinfo.py &'
                 }      
                 
       }
