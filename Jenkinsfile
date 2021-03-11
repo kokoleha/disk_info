@@ -1,5 +1,5 @@
 pipeline {
-  agent { docker { image 'python:latest', , args:'-u root:root' } }
+  agent { docker { image 'python:latest',args:'-u root:root' } }
   stages {
     stage('build') {
       steps {
