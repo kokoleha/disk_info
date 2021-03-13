@@ -1,7 +1,6 @@
 pipeline {
   agent { 
-    checkout scm
-    docker.image('python:latest').withRun('-p 8000:8000')
+docker { image 'python:latest'}
   }
   parallel firstBranch: {
     stages {
