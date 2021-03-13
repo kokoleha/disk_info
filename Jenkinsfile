@@ -1,9 +1,3 @@
-    parallel firstBranch: {
-        // do something
-    }, secondBranch: {
-        // do something else
-    },
-    failFast: true|false
 pipeline {
   agent { 
     checkout scm
