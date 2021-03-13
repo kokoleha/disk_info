@@ -19,5 +19,5 @@ node {
 
            }
        },
-    failFast: true|false
+    failFast: true
 }
