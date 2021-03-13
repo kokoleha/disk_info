@@ -1,15 +1,15 @@
 pipeline {
     agent { docker { image 'python:latest'} }
     stages {
-        stage('Example Stage') {
+        stage('Main Stage') {
             parallel {
-                stage('Stage 1') {
+                stage('Stage 1: Run the diskinfo') {
                     steps { withEnv(["HOME=${env.WORKSPACE}"]) {
                             sh 'pip3 install psutil'
                             sh 'python diskinfo.py' }      
                           }
                 }
-                stage('Stage 2') {
+                stage('Stage 2: do some tests') {
                     steps { sh 'echo stage 2 passed' }
                 }
                 stage('Stage 3') {
