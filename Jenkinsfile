@@ -21,4 +21,5 @@ pipeline {
       }
   },
     failFast: true|false
+  }
 }
