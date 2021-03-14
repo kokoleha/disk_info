@@ -22,7 +22,7 @@ pipeline {
                           }
                 }
                 stage('Stage 3: second test') {
-                    steps { sh 'The second test may be here' }
+                    steps { echo 'The second test may be here' }
                 }
             }
         }
