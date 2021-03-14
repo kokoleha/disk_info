@@ -1,0 +1,6 @@
+container:
+  image: kokoleha/diskinfo:latest
+service:
+  port: 8000
+
+replicaCount: 1
