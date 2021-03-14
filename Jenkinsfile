@@ -16,7 +16,7 @@ pipeline {
                 }
                 stage('Stage 2: first test') {
                     steps { withEnv(["HOME=${env.WORKSPACE}"]) {
-                            sleep 20
+                            sleep 30
                             sh 'pip3 install requests'
                             sh 'python test.py' }      
                           }
