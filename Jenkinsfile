@@ -22,7 +22,7 @@ pipeline {
                           }
                 }
                 stage('Stage 3: second test') {
-                    steps { sleep 40
+                    steps { sleep 35
                             echo 'The second test may be here' }
                 }
             }
