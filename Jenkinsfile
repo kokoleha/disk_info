@@ -14,11 +14,15 @@ pipeline {
                             sh 'python diskinfo.py' }      
                           }
                 }
-                stage('Stage 2: do some tests') {
-                    steps { sh 'echo stage 2 passed' }
+                stage('Stage 2: first test') {
+                    steps { withEnv(["HOME=${env.WORKSPACE}"]) {
+                            sleep 20
+                            sh 'pip3 install requests'
+                            sh 'python test.py' }      
+                          }
                 }
-                stage('Stage 3') {
-                    steps { sh 'echo stage 3 passed' }
+                stage('Stage 3: second test') {
+                    steps { sh 'The second test may be here' }
                 }
             }
         }
