@@ -17,6 +17,8 @@ docker run -it -p 8000:8000 kokoleha/diskinfo
    Pipeline SCM from Git: 
 https://github.com/vutracer/disk_info/
 
-4. Kubernetes.
+4. Kubernetes. 
+   В чарте используется образ из репозитория docker hub:
+kokoleha/diskinfo
    запуск Helm-chart:
 helm install diskinfo ./DiskinfoChart
